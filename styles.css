@@ -1,17 +1,17 @@
 :root {
-  --bg: #f3efe4;
-  --panel: rgba(255, 251, 245, 0.88);
-  --panel-strong: #fffdf7;
-  --text: #1f2933;
-  --muted: #6b7280;
-  --line: rgba(31, 41, 51, 0.08);
-  --accent: #c7522a;
-  --accent-dark: #8f3518;
-  --teal: #127475;
-  --gold: #e2a72e;
-  --red: #b8405e;
-  --green: #277da1;
-  --shadow: 0 20px 50px rgba(105, 87, 56, 0.12);
+  --bg: #0a0f1f;
+  --panel: rgba(18, 24, 46, 0.92);
+  --panel-strong: rgba(25, 33, 61, 0.96);
+  --text: #eef2ff;
+  --muted: #9aa7d1;
+  --line: rgba(166, 180, 255, 0.1);
+  --accent: #d45bff;
+  --accent-dark: #8d48ff;
+  --teal: #4fe0ff;
+  --gold: #7a7dff;
+  --red: #ff5ea8;
+  --green: #64f0c8;
+  --shadow: 0 24px 60px rgba(3, 6, 20, 0.45);
 }
 
 * {
@@ -24,9 +24,10 @@ body {
   color: var(--text);
   font-family: "IBM Plex Sans", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(226, 167, 46, 0.25), transparent 30%),
-    radial-gradient(circle at top right, rgba(18, 116, 117, 0.18), transparent 25%),
-    linear-gradient(160deg, #f5f1e8 0%, #efe6d1 100%);
+    radial-gradient(circle at top left, rgba(141, 72, 255, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(79, 224, 255, 0.16), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(212, 91, 255, 0.12), transparent 20%),
+    linear-gradient(155deg, #090d1b 0%, #111733 42%, #1c2342 100%);
 }
 
 button,
@@ -52,7 +53,7 @@ input {
 .eyebrow,
 .panel-kicker {
   margin: 0 0 8px;
-  color: var(--accent-dark);
+  color: #c68cff;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -108,14 +109,20 @@ h3 {
 
 .button-primary {
   color: white;
-  background: linear-gradient(135deg, var(--accent) 0%, #e47d42 100%);
-  box-shadow: 0 12px 24px rgba(199, 82, 42, 0.25);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  box-shadow: 0 12px 24px rgba(141, 72, 255, 0.25);
 }
 
 .button-secondary {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(31, 41, 51, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(166, 180, 255, 0.14);
+}
+
+.button-ghost {
+  color: var(--teal);
+  background: rgba(79, 224, 255, 0.08);
+  border: 1px solid rgba(79, 224, 255, 0.18);
 }
 
 .dashboard {
@@ -126,7 +133,7 @@ h3 {
 
 .panel {
   background: var(--panel);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(166, 180, 255, 0.08);
   backdrop-filter: blur(10px);
   border-radius: 28px;
   box-shadow: var(--shadow);
@@ -138,7 +145,8 @@ h3 {
 .market-panel,
 .portfolio-panel,
 .insights-panel,
-.feed-panel {
+.feed-panel,
+.learning-panel {
   grid-column: span 12;
 }
 
@@ -179,18 +187,18 @@ h3 {
 }
 
 .positive {
-  color: #116149;
-  background: rgba(39, 125, 161, 0.12);
+  color: #9ff6df;
+  background: rgba(100, 240, 200, 0.12);
 }
 
 .negative {
-  color: #8f2544;
-  background: rgba(184, 64, 94, 0.12);
+  color: #ff9bc5;
+  background: rgba(255, 94, 168, 0.12);
 }
 
 .neutral {
-  color: #67531a;
-  background: rgba(226, 167, 46, 0.16);
+  color: #c6cbff;
+  background: rgba(122, 125, 255, 0.16);
 }
 
 .panel-heading,
@@ -206,7 +214,8 @@ h3 {
   border-radius: 14px;
   border: 1px solid var(--line);
   padding: 10px 12px;
-  background: white;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .scenario-tags {
@@ -219,7 +228,7 @@ h3 {
 .scenario-tag {
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(18, 116, 117, 0.1);
+  background: rgba(79, 224, 255, 0.1);
   color: var(--teal);
   font-size: 0.86rem;
   font-weight: 600;
@@ -257,8 +266,8 @@ h3 {
 .sector-pill {
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(226, 167, 46, 0.14);
-  color: #7f5b08;
+  background: rgba(122, 125, 255, 0.18);
+  color: #d6d7ff;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -285,7 +294,8 @@ h3 {
   border-radius: 12px;
   border: 1px solid var(--line);
   padding: 10px;
-  background: white;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .trade-actions {
@@ -302,7 +312,7 @@ h3 {
 }
 
 .mini-buy {
-  color: white;
+  color: #08111c;
   background: var(--teal);
 }
 
@@ -317,7 +327,7 @@ h3 {
   margin-top: 18px;
   border-radius: 20px;
   background:
-    linear-gradient(180deg, rgba(18, 116, 117, 0.07), rgba(18, 116, 117, 0)),
+    linear-gradient(180deg, rgba(79, 224, 255, 0.1), rgba(79, 224, 255, 0)),
     var(--panel-strong);
   border: 1px solid var(--line);
 }
@@ -364,8 +374,8 @@ h3 {
   margin-top: 12px;
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(199, 82, 42, 0.1);
-  color: var(--accent-dark);
+  background: rgba(212, 91, 255, 0.12);
+  color: #f2c7ff;
   font-weight: 700;
 }
 
@@ -392,7 +402,7 @@ h3 {
 .bar-fill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--gold), var(--accent));
+  background: linear-gradient(90deg, var(--teal), var(--accent));
 }
 
 .event-feed {
@@ -426,6 +436,71 @@ h3 {
   line-height: 1.5;
 }
 
+.learning-spotlight {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(212, 91, 255, 0.08), rgba(79, 224, 255, 0.04)),
+    var(--panel-strong);
+  border: 1px solid var(--line);
+  min-height: 100%;
+}
+
+.learning-art {
+  width: 100%;
+  aspect-ratio: 1.85;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid rgba(166, 180, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.learning-label {
+  display: inline-flex;
+  margin-top: 16px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: var(--teal);
+  background: rgba(79, 224, 255, 0.08);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.learning-title {
+  margin-top: 12px;
+  font-size: 1.25rem;
+}
+
+.learning-copy,
+.learning-example {
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.learning-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.learning-point {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(166, 180, 255, 0.08);
+}
+
+.learning-point strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
 @media (min-width: 900px) {
   .market-panel,
   .portfolio-panel {
@@ -433,9 +508,13 @@ h3 {
   }
 
   .scenario-panel,
-  .insights-panel,
-  .feed-panel {
+  .insights-panel {
     grid-column: span 4;
+  }
+
+  .feed-panel,
+  .learning-panel {
+    grid-column: span 6;
   }
 
   .feed-panel {
@@ -467,6 +546,14 @@ h3 {
   }
 
   .sector-row {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-art {
+    aspect-ratio: 1.12;
+  }
+
+  .learning-points {
     grid-template-columns: 1fr;
   }
 }

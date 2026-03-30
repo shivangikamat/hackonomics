@@ -178,8 +178,90 @@ const state = {
   history: [],
   activeScenario: SCENARIOS[0].id,
   tick: 0,
+  day: 1,
   lastEvent: null,
   baselineValue: 10000,
+};
+
+const CONCEPTS = {
+  rates_hike: {
+    label: "Learning Spotlight",
+    title: "Why Interest Rates Matter",
+    summary:
+      "When central banks raise interest rates, borrowing becomes more expensive. Businesses and consumers usually spend more carefully, and investors often become less willing to pay high prices for future growth.",
+    example:
+      "That is why tech and other fast-growth stocks often fall harder during rate hikes, while some banks can benefit from higher lending margins.",
+    points: [
+      { title: "Core idea", body: "Higher rates reduce demand and can slow the economy." },
+      { title: "Market effect", body: "Growth stocks are usually more sensitive because their value depends heavily on future earnings." },
+    ],
+    image: createConceptArt("rates"),
+  },
+  oil_spike: {
+    label: "Learning Spotlight",
+    title: "Supply Shocks And Oil Prices",
+    summary:
+      "Oil is a key input for transport, shipping, and manufacturing. If supply is disrupted, prices can jump quickly and push up costs across the economy.",
+    example:
+      "Energy companies may gain from higher oil prices, but airlines, logistics firms, and consumers can feel the squeeze.",
+    points: [
+      { title: "Core idea", body: "Scarcity raises prices when demand stays strong." },
+      { title: "Market effect", body: "Energy stocks can rise while cost-sensitive sectors weaken." },
+    ],
+    image: createConceptArt("oil"),
+  },
+  recession_warning: {
+    label: "Learning Spotlight",
+    title: "What A Recession Warning Means",
+    summary:
+      "A recession warning suggests economic growth may slow or turn negative. Investors usually become more defensive and shift away from companies tied to consumer spending and business expansion.",
+    example:
+      "Healthcare and other defensive sectors can hold up better because people still need those goods and services even in weaker economies.",
+    points: [
+      { title: "Core idea", body: "Lower confidence often means weaker spending and lower company earnings." },
+      { title: "Market effect", body: "Cyclical sectors tend to drop faster than defensive sectors." },
+    ],
+    image: createConceptArt("recession"),
+  },
+  ai_boom: {
+    label: "Learning Spotlight",
+    title: "Innovation Cycles And Valuation",
+    summary:
+      "When investors believe a new technology will change industries, money can flood into the companies building the tools behind it. This often creates strong momentum in a few sectors.",
+    example:
+      "Chipmakers, cloud platforms, and software leaders can rally as markets price in future demand for AI infrastructure.",
+    points: [
+      { title: "Core idea", body: "Markets move on expectations, not only current profits." },
+      { title: "Market effect", body: "Narratives can accelerate gains, but crowded trades can reverse quickly." },
+    ],
+    image: createConceptArt("ai"),
+  },
+  supply_chain_ease: {
+    label: "Learning Spotlight",
+    title: "How Supply Chains Affect Prices",
+    summary:
+      "When shipping delays and shortages ease, companies can get materials faster and at lower cost. That improves margins and reduces pressure on consumer prices.",
+    example:
+      "Manufacturers and hardware companies may benefit because it becomes cheaper and easier to build and deliver products.",
+    points: [
+      { title: "Core idea", body: "Lower friction in production often improves company profitability." },
+      { title: "Market effect", body: "Businesses tied to physical goods can recover when bottlenecks fade." },
+    ],
+    image: createConceptArt("supply"),
+  },
+  starter: {
+    label: "Learning Spotlight",
+    title: "Diversification Basics",
+    summary:
+      "Diversification means spreading investments across sectors so one headline does not control your whole outcome. It is one of the simplest risk-management ideas in finance.",
+    example:
+      "If tech falls after a rate hike, energy or healthcare holdings may soften the impact on your portfolio.",
+    points: [
+      { title: "Core idea", body: "Different sectors react differently to the same event." },
+      { title: "Market effect", body: "A balanced portfolio is usually less volatile than a concentrated one." },
+    ],
+    image: createConceptArt("diversification"),
+  },
 };
 
 const summaryGrid = document.getElementById("summary-grid");
@@ -192,10 +274,12 @@ const eventFeed = document.getElementById("event-feed");
 const exposureSummary = document.getElementById("exposure-summary");
 const explanationCard = document.getElementById("explanation-card");
 const sectorBars = document.getElementById("sector-bars");
+const learningSpotlight = document.getElementById("learning-spotlight");
 const performanceChart = document.getElementById("performance-chart");
 const performanceCtx = performanceChart.getContext("2d");
 
 document.getElementById("trigger-event").addEventListener("click", triggerScenarioEvent);
+document.getElementById("next-day").addEventListener("click", advanceToNextDay);
 document
   .getElementById("explain-portfolio")
   .addEventListener("click", renderExplanation);
@@ -223,11 +307,12 @@ function loadScenario(scenarioId) {
   state.baselineValue = scenario.cash;
   state.holdings = {};
   state.tick = 0;
+  state.day = 1;
   state.lastEvent = null;
   state.eventFeed = [
     {
       title: `Scenario loaded: ${scenario.name}`,
-      explanation: scenario.description,
+      explanation: `${scenario.description} You are starting on Day 1.`,
       at: new Date(),
     },
   ];
@@ -250,6 +335,7 @@ function loadScenario(scenarioId) {
 
 function simulateMarketTick() {
   state.tick += 1;
+  state.day += 1;
   state.stocks.forEach((stock) => {
     const drift = (Math.random() - 0.5) * stock.volatility * 0.9;
     stock.previousClose = stock.price;
@@ -263,6 +349,10 @@ function simulateMarketTick() {
 
   recordHistory();
   render();
+}
+
+function advanceToNextDay() {
+  simulateMarketTick();
 }
 
 function triggerScenarioEvent() {
@@ -287,7 +377,7 @@ function triggerScenarioEvent() {
   });
 
   state.eventFeed.unshift({
-    title: event.title,
+    title: `Day ${state.day}: ${event.title}`,
     explanation: event.explanation,
     at: new Date(),
   });
@@ -380,6 +470,7 @@ function render() {
   renderExplanation();
   renderSectorExposure();
   renderChart();
+  renderLearningSpotlight();
 }
 
 function renderSummary() {
@@ -391,8 +482,8 @@ function renderSummary() {
   const cards = [
     { label: "Portfolio Value", value: formatCurrency(portfolioValue), tone: classifyTone(pnl), delta: formatSignedCurrency(pnl) },
     { label: "Available Cash", value: formatCurrency(state.cash), tone: "neutral", delta: `${countPositions()} open positions` },
-    { label: "Latest Event", value: state.lastEvent ? state.lastEvent.title.split(" ").slice(0, 3).join(" ") : "Quiet market", tone: "neutral", delta: state.lastEvent ? "Macro shock active" : "No headline yet" },
-    { label: "Last Tick Move", value: formatSignedCurrency(dailyMove), tone: classifyTone(dailyMove), delta: `${state.history.length} chart points` },
+    { label: "Trading Day", value: `Day ${state.day}`, tone: "neutral", delta: "Advance manually or wait" },
+    { label: "Last Day Move", value: formatSignedCurrency(dailyMove), tone: classifyTone(dailyMove), delta: state.lastEvent ? "Latest macro shock logged" : `${state.history.length} chart points` },
   ];
 
   summaryGrid.innerHTML = cards
@@ -585,8 +676,8 @@ function renderChart() {
   }
 
   const gradient = performanceCtx.createLinearGradient(0, 0, 0, height);
-  gradient.addColorStop(0, "rgba(18, 116, 117, 0.34)");
-  gradient.addColorStop(1, "rgba(18, 116, 117, 0.02)");
+  gradient.addColorStop(0, "rgba(79, 224, 255, 0.3)");
+  gradient.addColorStop(1, "rgba(79, 224, 255, 0.02)");
 
   performanceCtx.beginPath();
   values.forEach((value, index) => {
@@ -614,7 +705,7 @@ function renderChart() {
       performanceCtx.lineTo(x, y);
     }
   });
-  performanceCtx.strokeStyle = "#127475";
+  performanceCtx.strokeStyle = "#4fe0ff";
   performanceCtx.lineWidth = 3;
   performanceCtx.stroke();
 
@@ -623,13 +714,40 @@ function renderChart() {
   const lastY = mapValue(lastValue, min, max, height - 28, 28);
   performanceCtx.beginPath();
   performanceCtx.arc(lastX, lastY, 6, 0, Math.PI * 2);
-  performanceCtx.fillStyle = "#c7522a";
+  performanceCtx.fillStyle = "#d45bff";
   performanceCtx.fill();
 
-  performanceCtx.fillStyle = "#6b7280";
+  performanceCtx.fillStyle = "#9aa7d1";
   performanceCtx.font = "13px IBM Plex Sans";
   performanceCtx.fillText(`Start ${formatCurrency(values[0])}`, 24, height - 8);
   performanceCtx.fillText(`Now ${formatCurrency(lastValue)}`, width - 120, 18);
+}
+
+function renderLearningSpotlight() {
+  const concept =
+    (state.lastEvent && CONCEPTS[state.lastEvent.id]) ||
+    CONCEPTS[state.activeScenario] ||
+    CONCEPTS.starter;
+
+  learningSpotlight.innerHTML = `
+    <img class="learning-art" src="${concept.image}" alt="${concept.title}" />
+    <span class="learning-label">${concept.label}</span>
+    <h3 class="learning-title">${concept.title}</h3>
+    <p class="learning-copy">${concept.summary}</p>
+    <p class="learning-example">${concept.example}</p>
+    <div class="learning-points">
+      ${concept.points
+        .map(
+          (point) => `
+            <div class="learning-point">
+              <strong>${point.title}</strong>
+              <span>${point.body}</span>
+            </div>
+          `
+        )
+        .join("")}
+    </div>
+  `;
 }
 
 function summarizeSectorExposure() {
@@ -731,6 +849,104 @@ function mapValue(value, min, max, outMin, outMax) {
     return (outMin + outMax) / 2;
   }
   return outMin + ((value - min) / (max - min)) * (outMax - outMin);
+}
+
+function createConceptArt(type) {
+  const artwork = {
+    rates: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#d45bff"/>
+            <stop offset="100%" stop-color="#4fe0ff"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="460" rx="32" fill="#141b35"/>
+        <circle cx="118" cy="104" r="74" fill="rgba(212,91,255,0.18)"/>
+        <path d="M90 328h70V140H90zM220 328h70V182h-70zM350 328h70V96h-70z" fill="url(#g1)"/>
+        <path d="M86 110h278" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
+        <path d="M314 60l54 50-54 50" fill="none" stroke="#eef2ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `,
+    oil: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff5ea8"/>
+            <stop offset="100%" stop-color="#7a7dff"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="460" rx="32" fill="#141b35"/>
+        <path d="M116 322c0-68 54-123 122-123s122 55 122 123H116z" fill="url(#g2)"/>
+        <path d="M202 180c0-42 28-77 58-111 30 34 58 69 58 111 0 36-26 67-58 67s-58-31-58-67z" fill="#4fe0ff"/>
+        <path d="M92 344h336" stroke="#eef2ff" stroke-width="10" stroke-linecap="round"/>
+      </svg>
+    `,
+    recession: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4fe0ff"/>
+            <stop offset="100%" stop-color="#ff5ea8"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="460" rx="32" fill="#141b35"/>
+        <path d="M94 118v220h326" stroke="#eef2ff" stroke-width="10" stroke-linecap="round"/>
+        <path d="M128 158c42 26 78 39 118 36 44-4 74-27 146-92" fill="none" stroke="url(#g3)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M346 84l46-18-18 46" fill="none" stroke="#ff5ea8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `,
+    ai: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7a7dff"/>
+            <stop offset="100%" stop-color="#4fe0ff"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="460" rx="32" fill="#141b35"/>
+        <rect x="146" y="94" width="228" height="228" rx="26" fill="url(#g4)"/>
+        <path d="M200 160h120M200 230h120M200 300h78" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="126" cy="208" r="18" fill="#d45bff"/>
+        <circle cx="394" cy="208" r="18" fill="#d45bff"/>
+        <circle cx="260" cy="74" r="18" fill="#d45bff"/>
+        <circle cx="260" cy="342" r="18" fill="#d45bff"/>
+        <path d="M144 208h-40M414 208h-40M260 92v-40M260 362v-40" stroke="#eef2ff" stroke-width="10" stroke-linecap="round"/>
+      </svg>
+    `,
+    supply: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4fe0ff"/>
+            <stop offset="100%" stop-color="#64f0c8"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="460" rx="32" fill="#141b35"/>
+        <rect x="112" y="140" width="110" height="140" rx="18" fill="url(#g5)"/>
+        <rect x="250" y="96" width="154" height="184" rx="18" fill="#7a7dff"/>
+        <path d="M114 320h290" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
+        <path d="M170 132V88h144v44" fill="none" stroke="#d45bff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `,
+    diversification: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4fe0ff"/>
+            <stop offset="50%" stop-color="#7a7dff"/>
+            <stop offset="100%" stop-color="#d45bff"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="460" rx="32" fill="#141b35"/>
+        <circle cx="260" cy="220" r="126" fill="none" stroke="url(#g6)" stroke-width="52"/>
+        <path d="M260 94v252M134 220h252" stroke="#141b35" stroke-width="18" stroke-linecap="round"/>
+        <circle cx="260" cy="220" r="44" fill="#141b35" stroke="#eef2ff" stroke-width="10"/>
+      </svg>
+    `,
+  };
+
+  return `data:image/svg+xml;utf8,${encodeURIComponent(artwork[type])}`;
 }
 
 initialize();
