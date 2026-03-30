@@ -20,11 +20,10 @@ MarketMind is a browser-based stock market learning game built for Hackonomics. 
 
 ## Screenshots
 
-![MarketMind dashboard overview](/Users/shika/Desktop/Screenshot%202026-03-30%20at%2019.19.27.png)
 
-![MarketMind portfolio and insight panels](/Users/shika/Desktop/Screenshot%202026-03-30%20at%2019.19.57.png)
-
-![MarketMind event feed and learning spotlight](/Users/shika/Desktop/Screenshot%202026-03-30%20at%2019.20.42.png)
+<img width="1709" height="973" alt="Screenshot 2026-03-30 at 19 19 27" src="https://github.com/user-attachments/assets/0289a412-12ee-4508-9dc5-11754dc708cc" />
+<img width="1307" height="561" alt="Screenshot 2026-03-30 at 19 20 17" src="https://github.com/user-attachments/assets/5477cb80-5091-4adc-bf05-d87f56cccafa" />
+<img width="1275" height="777" alt="Screenshot 2026-03-30 at 19 20 42" src="https://github.com/user-attachments/assets/ff74867c-7a98-4817-8af2-f790c8aa614b" />
 
 ## Run It
 
