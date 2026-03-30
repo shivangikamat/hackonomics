@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarketMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Hackonomics 2026</p>
+          <h1>MarketMind</h1>
+          <p class="hero-copy">
+            Learn investing by trading through macro shocks, sector rotations,
+            and history-inspired scenarios.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="trigger-event" class="button button-primary">
+            Trigger Market Event
+          </button>
+          <button id="explain-portfolio" class="button button-secondary">
+            Explain My Portfolio
+          </button>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel summary-panel">
+          <div class="summary-grid" id="summary-grid"></div>
+        </section>
+
+        <section class="panel scenario-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Scenario Mode</p>
+              <h2>Trade Through Turning Points</h2>
+            </div>
+            <select id="scenario-select" class="scenario-select"></select>
+          </div>
+          <p id="scenario-description" class="scenario-description"></p>
+          <div class="scenario-tags" id="scenario-tags"></div>
+        </section>
+
+        <section class="panel market-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Market Board</p>
+              <h2>Stocks To Watch</h2>
+            </div>
+            <p class="microcopy">Prices react to each event and simulation tick.</p>
+          </div>
+          <div id="stock-grid" class="stock-grid"></div>
+        </section>
+
+        <section class="panel portfolio-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Portfolio</p>
+              <h2>Performance Over Time</h2>
+            </div>
+            <p id="exposure-summary" class="microcopy"></p>
+          </div>
+          <canvas id="performance-chart" width="900" height="320"></canvas>
+          <div id="holdings-table" class="holdings-table"></div>
+        </section>
+
+        <section class="panel insights-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Insight Engine</p>
+              <h2>Why You Won Or Lost</h2>
+            </div>
+          </div>
+          <div id="explanation-card" class="explanation-card"></div>
+          <div class="sector-card">
+            <div class="sector-header">
+              <h3>Sector Exposure</h3>
+              <p class="microcopy">Allocated by current position value.</p>
+            </div>
+            <div id="sector-bars" class="sector-bars"></div>
+          </div>
+        </section>
+
+        <section class="panel feed-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Event Feed</p>
+              <h2>Macro Storyline</h2>
+            </div>
+          </div>
+          <div id="event-feed" class="event-feed"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
