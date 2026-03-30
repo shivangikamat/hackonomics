@@ -438,7 +438,7 @@ h3 {
 
 .learning-spotlight {
   margin-top: 18px;
-  padding: 18px;
+  padding: 16px;
   border-radius: 22px;
   background:
     linear-gradient(180deg, rgba(212, 91, 255, 0.08), rgba(79, 224, 255, 0.04)),
@@ -449,7 +449,7 @@ h3 {
 
 .learning-art {
   width: 100%;
-  aspect-ratio: 1.85;
+  aspect-ratio: 2.15;
   object-fit: cover;
   border-radius: 20px;
   border: 1px solid rgba(166, 180, 255, 0.1);
@@ -470,35 +470,37 @@ h3 {
 }
 
 .learning-title {
-  margin-top: 12px;
-  font-size: 1.25rem;
+  margin-top: 10px;
+  font-size: 1.15rem;
 }
 
 .learning-copy,
 .learning-example {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 .learning-points {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 .learning-point {
-  padding: 12px 14px;
+  padding: 10px 12px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(166, 180, 255, 0.08);
+  font-size: 0.92rem;
 }
 
 .learning-point strong {
   display: block;
-  margin-bottom: 4px;
-  font-size: 0.95rem;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
 }
 
 @media (min-width: 900px) {

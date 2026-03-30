@@ -186,33 +186,33 @@ const state = {
 const CONCEPTS = {
   rates_hike: {
     label: "Learning Spotlight",
-    title: "Why Interest Rates Matter",
+    title: "Inflation And Interest Rates",
     summary:
-      "When central banks raise interest rates, borrowing becomes more expensive. Businesses and consumers usually spend more carefully, and investors often become less willing to pay high prices for future growth.",
+      "Central banks often raise interest rates when inflation is running too hot. Higher rates slow borrowing and spending, which can reduce price pressure across the economy.",
     example:
-      "That is why tech and other fast-growth stocks often fall harder during rate hikes, while some banks can benefit from higher lending margins.",
+      "That is why rate-hike headlines often hit growth stocks, mortgages, and consumer demand while helping some banks earn wider lending margins.",
     points: [
-      { title: "Core idea", body: "Higher rates reduce demand and can slow the economy." },
-      { title: "Market effect", body: "Growth stocks are usually more sensitive because their value depends heavily on future earnings." },
+      { title: "Inflation link", body: "Policymakers use rates to cool spending when prices rise too quickly." },
+      { title: "Market effect", body: "Growth stocks are sensitive because future profits are worth less when rates are higher." },
     ],
-    image: createConceptArt("rates"),
+    image: createConceptArt("inflation"),
   },
   oil_spike: {
     label: "Learning Spotlight",
-    title: "Supply Shocks And Oil Prices",
+    title: "Macroeconomics: Supply Shocks",
     summary:
-      "Oil is a key input for transport, shipping, and manufacturing. If supply is disrupted, prices can jump quickly and push up costs across the economy.",
+      "Macroeconomics studies economy-wide forces like inflation, growth, unemployment, and energy shocks. Oil is a classic macro variable because it affects transport, production, and consumer prices at the same time.",
     example:
-      "Energy companies may gain from higher oil prices, but airlines, logistics firms, and consumers can feel the squeeze.",
+      "When oil spikes, energy companies may gain while airlines, logistics firms, and households face higher costs.",
     points: [
-      { title: "Core idea", body: "Scarcity raises prices when demand stays strong." },
-      { title: "Market effect", body: "Energy stocks can rise while cost-sensitive sectors weaken." },
+      { title: "Macro view", body: "One shock can ripple through inflation, growth expectations, and sector performance." },
+      { title: "Market effect", body: "Energy can rise while cost-sensitive businesses weaken." },
     ],
-    image: createConceptArt("oil"),
+    image: createConceptArt("macroeconomics"),
   },
   recession_warning: {
     label: "Learning Spotlight",
-    title: "What A Recession Warning Means",
+    title: "Recession Risk And Business Cycles",
     summary:
       "A recession warning suggests economic growth may slow or turn negative. Investors usually become more defensive and shift away from companies tied to consumer spending and business expansion.",
     example:
@@ -225,42 +225,55 @@ const CONCEPTS = {
   },
   ai_boom: {
     label: "Learning Spotlight",
-    title: "Innovation Cycles And Valuation",
+    title: "Microeconomics: Demand, Supply, And Pricing Power",
     summary:
-      "When investors believe a new technology will change industries, money can flood into the companies building the tools behind it. This often creates strong momentum in a few sectors.",
+      "Microeconomics looks at how individual firms and markets behave. In a tech boom, demand surges for chips and software, and companies with scarce supply or strong pricing power can capture outsized profits.",
     example:
-      "Chipmakers, cloud platforms, and software leaders can rally as markets price in future demand for AI infrastructure.",
+      "Chipmakers and platform companies can rally when buyers compete for limited supply and investors expect margins to expand.",
     points: [
-      { title: "Core idea", body: "Markets move on expectations, not only current profits." },
-      { title: "Market effect", body: "Narratives can accelerate gains, but crowded trades can reverse quickly." },
+      { title: "Micro view", body: "Firm-level pricing, competition, and scarcity shape who wins." },
+      { title: "Market effect", body: "Narratives can lift valuations quickly, but crowded trades can reverse just as fast." },
     ],
-    image: createConceptArt("ai"),
+    image: createConceptArt("microeconomics"),
   },
   supply_chain_ease: {
     label: "Learning Spotlight",
-    title: "How Supply Chains Affect Prices",
+    title: "Disinflation Through Better Supply Chains",
     summary:
       "When shipping delays and shortages ease, companies can get materials faster and at lower cost. That improves margins and reduces pressure on consumer prices.",
     example:
       "Manufacturers and hardware companies may benefit because it becomes cheaper and easier to build and deliver products.",
     points: [
-      { title: "Core idea", body: "Lower friction in production often improves company profitability." },
+      { title: "Inflation link", body: "Lower input costs can help slow inflation without cutting demand." },
       { title: "Market effect", body: "Businesses tied to physical goods can recover when bottlenecks fade." },
     ],
-    image: createConceptArt("supply"),
+    image: createConceptArt("inflation"),
   },
   starter: {
     label: "Learning Spotlight",
-    title: "Diversification Basics",
+    title: "Macroeconomics Vs Microeconomics",
     summary:
-      "Diversification means spreading investments across sectors so one headline does not control your whole outcome. It is one of the simplest risk-management ideas in finance.",
+      "Macroeconomics looks at the whole economy, like inflation, growth, rates, and unemployment. Microeconomics looks at individual businesses, industries, prices, and competition.",
     example:
-      "If tech falls after a rate hike, energy or healthcare holdings may soften the impact on your portfolio.",
+      "This game combines both: a macro headline can move the whole market, while each stock reacts differently based on its own sector and business model.",
     points: [
-      { title: "Core idea", body: "Different sectors react differently to the same event." },
-      { title: "Market effect", body: "A balanced portfolio is usually less volatile than a concentrated one." },
+      { title: "Macro", body: "Big-picture forces move many assets at once." },
+      { title: "Micro", body: "Firm-level fundamentals explain why some stocks move more than others." },
     ],
-    image: createConceptArt("diversification"),
+    image: createConceptArt("macro-micro"),
+  },
+  recession: {
+    label: "Learning Spotlight",
+    title: "Recession And Unemployment",
+    summary:
+      "Recessions usually come with falling output, weaker hiring, and lower business investment. Economists track these trends to understand where the economy is in the business cycle.",
+    example:
+      "When unemployment rises and consumer spending slows, cyclical sectors tend to weaken before defensive sectors do.",
+    points: [
+      { title: "Core idea", body: "Recessions reflect broad weakness in production and demand." },
+      { title: "Market effect", body: "Investors often shift toward safer assets and defensive industries." },
+    ],
+    image: createConceptArt("recession"),
   },
 };
 
@@ -729,12 +742,15 @@ function renderLearningSpotlight() {
     CONCEPTS[state.activeScenario] ||
     CONCEPTS.starter;
 
+  const shortSummary = shortenText(concept.summary, 150);
+  const shortExample = shortenText(concept.example, 120);
+
   learningSpotlight.innerHTML = `
     <img class="learning-art" src="${concept.image}" alt="${concept.title}" />
     <span class="learning-label">${concept.label}</span>
     <h3 class="learning-title">${concept.title}</h3>
-    <p class="learning-copy">${concept.summary}</p>
-    <p class="learning-example">${concept.example}</p>
+    <p class="learning-copy">${shortSummary}</p>
+    <p class="learning-example">${shortExample}</p>
     <div class="learning-points">
       ${concept.points
         .map(
@@ -853,100 +869,129 @@ function mapValue(value, min, max, outMin, outMax) {
 
 function createConceptArt(type) {
   const artwork = {
-    rates: `
+    inflation: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
-          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a2344"/>
+            <stop offset="100%" stop-color="#141b35"/>
+          </linearGradient>
+          <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#d45bff"/>
             <stop offset="100%" stop-color="#4fe0ff"/>
           </linearGradient>
         </defs>
-        <rect width="520" height="460" rx="32" fill="#141b35"/>
-        <circle cx="118" cy="104" r="74" fill="rgba(212,91,255,0.18)"/>
-        <path d="M90 328h70V140H90zM220 328h70V182h-70zM350 328h70V96h-70z" fill="url(#g1)"/>
-        <path d="M86 110h278" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
-        <path d="M314 60l54 50-54 50" fill="none" stroke="#eef2ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect width="520" height="460" rx="32" fill="url(#bg1)"/>
+        <circle cx="122" cy="114" r="88" fill="rgba(212,91,255,0.14)"/>
+        <circle cx="406" cy="328" r="96" fill="rgba(79,224,255,0.10)"/>
+        <rect x="92" y="96" width="336" height="268" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
+        <circle cx="176" cy="230" r="56" fill="url(#accent1)"/>
+        <path d="M176 194v72M140 230h72" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
+        <path d="M266 260h96" stroke="#eef2ff" stroke-width="16" stroke-linecap="round"/>
+        <path d="M336 214l46 46-46 46" fill="none" stroke="#eef2ff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="112" y="146" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Inflation</text>
       </svg>
     `,
-    oil: `
+    macroeconomics: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
+          <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a2344"/>
+            <stop offset="100%" stop-color="#141b35"/>
+          </linearGradient>
           <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ff5ea8"/>
+            <stop offset="0%" stop-color="#4fe0ff"/>
             <stop offset="100%" stop-color="#7a7dff"/>
           </linearGradient>
         </defs>
-        <rect width="520" height="460" rx="32" fill="#141b35"/>
-        <path d="M116 322c0-68 54-123 122-123s122 55 122 123H116z" fill="url(#g2)"/>
-        <path d="M202 180c0-42 28-77 58-111 30 34 58 69 58 111 0 36-26 67-58 67s-58-31-58-67z" fill="#4fe0ff"/>
-        <path d="M92 344h336" stroke="#eef2ff" stroke-width="10" stroke-linecap="round"/>
+        <rect width="520" height="460" rx="32" fill="url(#bg2)"/>
+        <circle cx="116" cy="118" r="80" fill="rgba(79,224,255,0.12)"/>
+        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
+        <circle cx="176" cy="230" r="52" fill="url(#g2)"/>
+        <path d="M176 194v72M140 230h72" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
+        <rect x="260" y="168" width="116" height="116" rx="28" fill="rgba(255,255,255,0.06)"/>
+        <path d="M292 250v-38h20v38M320 250v-60h20v60M348 250v-86h20v86" fill="#4fe0ff"/>
+        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Macroeconomics</text>
       </svg>
     `,
     recession: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
+          <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a2344"/>
+            <stop offset="100%" stop-color="#141b35"/>
+          </linearGradient>
           <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#4fe0ff"/>
             <stop offset="100%" stop-color="#ff5ea8"/>
           </linearGradient>
         </defs>
-        <rect width="520" height="460" rx="32" fill="#141b35"/>
-        <path d="M94 118v220h326" stroke="#eef2ff" stroke-width="10" stroke-linecap="round"/>
-        <path d="M128 158c42 26 78 39 118 36 44-4 74-27 146-92" fill="none" stroke="url(#g3)" stroke-width="14" stroke-linecap="round"/>
-        <path d="M346 84l46-18-18 46" fill="none" stroke="#ff5ea8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect width="520" height="460" rx="32" fill="url(#bg3)"/>
+        <circle cx="404" cy="108" r="84" fill="rgba(255,94,168,0.12)"/>
+        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
+        <circle cx="178" cy="228" r="52" fill="url(#g3)"/>
+        <path d="M146 208h64M210 208l-30 30M210 208l-30-30" stroke="#141b35" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="258" y="174" width="118" height="108" rx="28" fill="rgba(255,255,255,0.06)"/>
+        <path d="M290 254h52M290 226h72M290 198h92" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
+        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Recession</text>
       </svg>
     `,
-    ai: `
+    microeconomics: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
+          <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a2344"/>
+            <stop offset="100%" stop-color="#141b35"/>
+          </linearGradient>
           <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7a7dff"/>
-            <stop offset="100%" stop-color="#4fe0ff"/>
-          </linearGradient>
-        </defs>
-        <rect width="520" height="460" rx="32" fill="#141b35"/>
-        <rect x="146" y="94" width="228" height="228" rx="26" fill="url(#g4)"/>
-        <path d="M200 160h120M200 230h120M200 300h78" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
-        <circle cx="126" cy="208" r="18" fill="#d45bff"/>
-        <circle cx="394" cy="208" r="18" fill="#d45bff"/>
-        <circle cx="260" cy="74" r="18" fill="#d45bff"/>
-        <circle cx="260" cy="342" r="18" fill="#d45bff"/>
-        <path d="M144 208h-40M414 208h-40M260 92v-40M260 362v-40" stroke="#eef2ff" stroke-width="10" stroke-linecap="round"/>
-      </svg>
-    `,
-    supply: `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
-        <defs>
-          <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#4fe0ff"/>
-            <stop offset="100%" stop-color="#64f0c8"/>
-          </linearGradient>
-        </defs>
-        <rect width="520" height="460" rx="32" fill="#141b35"/>
-        <rect x="112" y="140" width="110" height="140" rx="18" fill="url(#g5)"/>
-        <rect x="250" y="96" width="154" height="184" rx="18" fill="#7a7dff"/>
-        <path d="M114 320h290" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
-        <path d="M170 132V88h144v44" fill="none" stroke="#d45bff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    `,
-    diversification: `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
-        <defs>
-          <linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#4fe0ff"/>
-            <stop offset="50%" stop-color="#7a7dff"/>
             <stop offset="100%" stop-color="#d45bff"/>
           </linearGradient>
         </defs>
-        <rect width="520" height="460" rx="32" fill="#141b35"/>
-        <circle cx="260" cy="220" r="126" fill="none" stroke="url(#g6)" stroke-width="52"/>
-        <path d="M260 94v252M134 220h252" stroke="#141b35" stroke-width="18" stroke-linecap="round"/>
-        <circle cx="260" cy="220" r="44" fill="#141b35" stroke="#eef2ff" stroke-width="10"/>
+        <rect width="520" height="460" rx="32" fill="url(#bg4)"/>
+        <circle cx="126" cy="120" r="82" fill="rgba(79,224,255,0.10)"/>
+        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
+        <rect x="128" y="168" width="86" height="86" rx="24" fill="url(#g4)"/>
+        <path d="M152 198h38M152 220h38" stroke="#141b35" stroke-width="12" stroke-linecap="round"/>
+        <rect x="258" y="160" width="124" height="122" rx="30" fill="rgba(255,255,255,0.06)"/>
+        <circle cx="300" cy="202" r="16" fill="#4fe0ff"/>
+        <circle cx="340" cy="202" r="16" fill="#7a7dff"/>
+        <circle cx="320" cy="238" r="16" fill="#d45bff"/>
+        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Microeconomics</text>
+      </svg>
+    `,
+    "macro-micro": `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
+        <defs>
+          <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a2344"/>
+            <stop offset="100%" stop-color="#141b35"/>
+          </linearGradient>
+          <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4fe0ff"/>
+            <stop offset="100%" stop-color="#d45bff"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="460" rx="32" fill="url(#bg5)"/>
+        <circle cx="116" cy="120" r="78" fill="rgba(212,91,255,0.10)"/>
+        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
+        <circle cx="174" cy="230" r="50" fill="url(#g5)"/>
+        <path d="M174 198v64M142 230h64" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
+        <rect x="262" y="182" width="118" height="96" rx="28" fill="rgba(255,255,255,0.06)"/>
+        <path d="M292 212h58M292 238h82" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
+        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Finance Basics</text>
       </svg>
     `,
   };
 
   return `data:image/svg+xml;utf8,${encodeURIComponent(artwork[type])}`;
+}
+
+function shortenText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return `${text.slice(0, maxLength).trimEnd()}...`;
 }
 
 initialize();
