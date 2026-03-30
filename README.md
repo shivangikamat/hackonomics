@@ -18,6 +18,14 @@ MarketMind is a browser-based stock market learning game built for Hackonomics. 
 - Performance chart: visualizes net worth over time.
 - Sector exposure: shows where the portfolio is concentrated.
 
+## Screenshots
+
+![MarketMind dashboard overview](/Users/shika/Desktop/Screenshot%202026-03-30%20at%2019.19.27.png)
+
+![MarketMind portfolio and insight panels](/Users/shika/Desktop/Screenshot%202026-03-30%20at%2019.19.57.png)
+
+![MarketMind event feed and learning spotlight](/Users/shika/Desktop/Screenshot%202026-03-30%20at%2019.20.42.png)
+
 ## Run It
 
 This MVP is fully static and does not require a build step.
