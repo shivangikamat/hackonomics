@@ -183,10 +183,41 @@ const state = {
   baselineValue: 10000,
 };
 
+const LEARNING_IMAGES = {
+  inflation:
+    "https://saylordotorg.github.io/text_international-finance-theory-and-policy/section_10/53662d042195320aa3bf6f21a4dcb5d8.jpg",
+  supplyDemand:
+    "https://cdn.britannica.com/70/74270-050-317C4423/Illustration-price-relationship-demand.jpg",
+  compoundInterest:
+    "https://cdn.corporatefinanceinstitute.com/assets/exponential-growth.jpeg",
+  riskReturn:
+    "https://www.truedata.in/content/uploads/blogimages/What-is-the-risk-return-trade-off-1.jpg",
+  diversification:
+    "https://www.citizensbank.com/assets/CB_media/images/infographics/What-is-Diversification_Micrographic_v5.jpg",
+  interestRates:
+    "https://saylordotorg.github.io/text_economics-theory-through-applications/section_09/4e219e3451bc33afd7bac1eb18756df7.jpg",
+  budgeting:
+    "https://assets.visme.co/templates/banners/thumbnails/i_Personal-Expense-Report-Pie-Chart_full.jpg",
+  volatility:
+    "https://www.investopedia.com/thmb/f3r5UZlSnKlKZEXnMVIMLcGSZkY%3D/1500x0/filters%3Ano_upscale%28%29%3Amax_bytes%28150000%29%3Astrip_icc%28%29/ZigZag-5c643b96c9e77c0001566e88.png",
+  circularFlow:
+    "https://www.researchgate.net/publication/258683567/figure/fig1/AS:297605797576714@1447975201300/The-circular-flow-of-income-and-expenditure.png",
+  emergencyFund:
+    "https://file.aiquickdraw.com/imgcompressed/img/compressed_f656aadff2f47f18ee091679f4706d8d.webp",
+  taxes:
+    "https://images.squarespace-cdn.com/content/v1/63dd375bd33e922c809471d7/54a4d98f-a800-4503-8e4f-b52001de5e39/benjamin%2Btalks%2Bdecoding%2Ba%2Bpaycheck.png",
+  opportunityCost:
+    "https://miro.medium.com/0%2Ai-XSaagRZOyKCLHZ.jpg",
+  netWorth:
+    "https://d138zd1ktt9iqe.cloudfront.net/media/seo_landing_files/net-worth-formula-1623404765.png",
+  recession:
+    "https://www.researchgate.net/publication/319163284/figure/fig11/AS%3A668324027453452%401536352273731/The-four-phases-of-an-asset-bubble-of-any-kind.ppm",
+};
+
 const CONCEPTS = {
   rates_hike: {
     label: "Learning Spotlight",
-    title: "Inflation And Interest Rates",
+    title: "Interest Rates",
     summary:
       "Central banks often raise interest rates when inflation is running too hot. Higher rates slow borrowing and spending, which can reduce price pressure across the economy.",
     example:
@@ -195,76 +226,76 @@ const CONCEPTS = {
       { title: "Inflation link", body: "Policymakers use rates to cool spending when prices rise too quickly." },
       { title: "Market effect", body: "Growth stocks are sensitive because future profits are worth less when rates are higher." },
     ],
-    image: createConceptArt("inflation"),
+    image: LEARNING_IMAGES.interestRates,
   },
   oil_spike: {
     label: "Learning Spotlight",
-    title: "Macroeconomics: Supply Shocks",
+    title: "Inflation Basics",
     summary:
-      "Macroeconomics studies economy-wide forces like inflation, growth, unemployment, and energy shocks. Oil is a classic macro variable because it affects transport, production, and consumer prices at the same time.",
+      "Inflation means average prices are rising, so each dollar buys less than before. Energy shocks are one common reason inflation can speed up across the economy.",
     example:
-      "When oil spikes, energy companies may gain while airlines, logistics firms, and households face higher costs.",
+      "When oil spikes, transport and production costs rise, which can feed into higher prices for households and businesses.",
     points: [
-      { title: "Macro view", body: "One shock can ripple through inflation, growth expectations, and sector performance." },
+      { title: "Core idea", body: "Prices rising faster than income reduces purchasing power." },
       { title: "Market effect", body: "Energy can rise while cost-sensitive businesses weaken." },
     ],
-    image: createConceptArt("macroeconomics"),
+    image: LEARNING_IMAGES.inflation,
   },
   recession_warning: {
     label: "Learning Spotlight",
-    title: "Recession Risk And Business Cycles",
+    title: "Market Volatility",
     summary:
-      "A recession warning suggests economic growth may slow or turn negative. Investors usually become more defensive and shift away from companies tied to consumer spending and business expansion.",
+      "Volatility means prices swing up and down quickly and unpredictably. Recession fears usually increase volatility because investors rapidly reprice risk and future earnings.",
     example:
-      "Healthcare and other defensive sectors can hold up better because people still need those goods and services even in weaker economies.",
+      "That is why recession warnings often trigger sharp drops in cyclical stocks while safer sectors hold up a bit better.",
     points: [
-      { title: "Core idea", body: "Lower confidence often means weaker spending and lower company earnings." },
+      { title: "Core idea", body: "Markets move more violently when uncertainty jumps." },
       { title: "Market effect", body: "Cyclical sectors tend to drop faster than defensive sectors." },
     ],
-    image: createConceptArt("recession"),
+    image: LEARNING_IMAGES.volatility,
   },
   ai_boom: {
     label: "Learning Spotlight",
-    title: "Microeconomics: Demand, Supply, And Pricing Power",
+    title: "Risk vs Return",
     summary:
-      "Microeconomics looks at how individual firms and markets behave. In a tech boom, demand surges for chips and software, and companies with scarce supply or strong pricing power can capture outsized profits.",
+      "Higher potential return usually comes with higher risk. During fast-moving booms, investors may chase growth because the upside looks huge, but that also raises the chance of sharp reversals.",
     example:
-      "Chipmakers and platform companies can rally when buyers compete for limited supply and investors expect margins to expand.",
+      "AI stocks can rally hard on optimism, but the same names can fall quickly if expectations cool.",
     points: [
-      { title: "Micro view", body: "Firm-level pricing, competition, and scarcity shape who wins." },
-      { title: "Market effect", body: "Narratives can lift valuations quickly, but crowded trades can reverse just as fast." },
+      { title: "Core idea", body: "More return usually means accepting more uncertainty." },
+      { title: "Market effect", body: "Crowded high-growth trades can reverse quickly." },
     ],
-    image: createConceptArt("microeconomics"),
+    image: LEARNING_IMAGES.riskReturn,
   },
   supply_chain_ease: {
     label: "Learning Spotlight",
-    title: "Disinflation Through Better Supply Chains",
+    title: "Supply & Demand",
     summary:
-      "When shipping delays and shortages ease, companies can get materials faster and at lower cost. That improves margins and reduces pressure on consumer prices.",
+      "Prices often move based on how much of something is available compared with how much people want to buy. When supply chains improve, supply increases and price pressure can ease.",
     example:
-      "Manufacturers and hardware companies may benefit because it becomes cheaper and easier to build and deliver products.",
+      "That is why easier shipping and fewer shortages can help manufacturers and reduce inflation pressure.",
     points: [
-      { title: "Inflation link", body: "Lower input costs can help slow inflation without cutting demand." },
+      { title: "Core idea", body: "More supply can lower prices when demand stays stable." },
       { title: "Market effect", body: "Businesses tied to physical goods can recover when bottlenecks fade." },
     ],
-    image: createConceptArt("inflation"),
+    image: LEARNING_IMAGES.supplyDemand,
   },
   starter: {
     label: "Learning Spotlight",
-    title: "Macroeconomics Vs Microeconomics",
+    title: "Diversification",
     summary:
-      "Macroeconomics looks at the whole economy, like inflation, growth, rates, and unemployment. Microeconomics looks at individual businesses, industries, prices, and competition.",
+      "Diversification means spreading money across different assets or sectors so one bad event does not hurt your whole portfolio as much.",
     example:
-      "This game combines both: a macro headline can move the whole market, while each stock reacts differently based on its own sector and business model.",
+      "If tech falls after a rate hike, healthcare or energy holdings may reduce the damage.",
     points: [
-      { title: "Macro", body: "Big-picture forces move many assets at once." },
-      { title: "Micro", body: "Firm-level fundamentals explain why some stocks move more than others." },
+      { title: "Core idea", body: "Do not rely on one sector or one stock." },
+      { title: "Market effect", body: "A mixed portfolio is often less volatile than a concentrated one." },
     ],
-    image: createConceptArt("macro-micro"),
+    image: LEARNING_IMAGES.diversification,
   },
   recession: {
     label: "Learning Spotlight",
-    title: "Recession And Unemployment",
+    title: "Recession Basics",
     summary:
       "Recessions usually come with falling output, weaker hiring, and lower business investment. Economists track these trends to understand where the economy is in the business cycle.",
     example:
@@ -273,7 +304,7 @@ const CONCEPTS = {
       { title: "Core idea", body: "Recessions reflect broad weakness in production and demand." },
       { title: "Market effect", body: "Investors often shift toward safer assets and defensive industries." },
     ],
-    image: createConceptArt("recession"),
+    image: LEARNING_IMAGES.recession,
   },
 };
 
@@ -872,114 +903,135 @@ function createConceptArt(type) {
     inflation: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
-          <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1a2344"/>
-            <stop offset="100%" stop-color="#141b35"/>
-          </linearGradient>
-          <linearGradient id="accent1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#d45bff"/>
-            <stop offset="100%" stop-color="#4fe0ff"/>
-          </linearGradient>
+          <marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937"/>
+          </marker>
         </defs>
-        <rect width="520" height="460" rx="32" fill="url(#bg1)"/>
-        <circle cx="122" cy="114" r="88" fill="rgba(212,91,255,0.14)"/>
-        <circle cx="406" cy="328" r="96" fill="rgba(79,224,255,0.10)"/>
-        <rect x="92" y="96" width="336" height="268" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
-        <circle cx="176" cy="230" r="56" fill="url(#accent1)"/>
-        <path d="M176 194v72M140 230h72" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
-        <path d="M266 260h96" stroke="#eef2ff" stroke-width="16" stroke-linecap="round"/>
-        <path d="M336 214l46 46-46 46" fill="none" stroke="#eef2ff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="112" y="146" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Inflation</text>
+        <rect width="520" height="460" rx="26" fill="#fbfdff"/>
+        <text x="260" y="62" text-anchor="middle" fill="#178b94" font-size="34" font-weight="700" font-family="IBM Plex Sans, Arial">Inflation</text>
+        <text x="260" y="92" text-anchor="middle" fill="#64748b" font-size="18" font-family="IBM Plex Sans, Arial">General price levels rising over time</text>
+        <line x1="96" y1="344" x2="426" y2="344" stroke="#111827" stroke-width="5" marker-end="url(#arrow1)"/>
+        <line x1="112" y1="360" x2="112" y2="132" stroke="#111827" stroke-width="5" marker-end="url(#arrow1)"/>
+        <text x="430" y="368" fill="#111827" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">TIME</text>
+        <text x="54" y="142" fill="#111827" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">PRICES</text>
+        <path d="M134 316 C 186 300, 214 278, 248 252 S 326 188, 404 146" fill="none" stroke="#ef4444" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="164" cy="292" r="18" fill="#fde68a" stroke="#f59e0b" stroke-width="3"/>
+        <text x="164" y="298" text-anchor="middle" fill="#92400e" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">$</text>
+        <circle cx="250" cy="246" r="18" fill="#bfdbfe" stroke="#3b82f6" stroke-width="3"/>
+        <text x="250" y="252" text-anchor="middle" fill="#1d4ed8" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">$</text>
+        <circle cx="344" cy="184" r="18" fill="#fbcfe8" stroke="#ec4899" stroke-width="3"/>
+        <text x="344" y="190" text-anchor="middle" fill="#be185d" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">$</text>
+        <rect x="286" y="250" width="140" height="58" rx="14" fill="#eef6ff" stroke="#bfdbfe"/>
+        <text x="356" y="274" text-anchor="middle" fill="#1f2937" font-size="17" font-weight="700" font-family="IBM Plex Sans, Arial">Purchasing Power</text>
+        <text x="356" y="296" text-anchor="middle" fill="#64748b" font-size="15" font-family="IBM Plex Sans, Arial">falls when prices rise</text>
       </svg>
     `,
     macroeconomics: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
-          <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1a2344"/>
-            <stop offset="100%" stop-color="#141b35"/>
-          </linearGradient>
-          <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#4fe0ff"/>
-            <stop offset="100%" stop-color="#7a7dff"/>
-          </linearGradient>
+          <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffffff"/>
+          </marker>
         </defs>
-        <rect width="520" height="460" rx="32" fill="url(#bg2)"/>
-        <circle cx="116" cy="118" r="80" fill="rgba(79,224,255,0.12)"/>
-        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
-        <circle cx="176" cy="230" r="52" fill="url(#g2)"/>
-        <path d="M176 194v72M140 230h72" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
-        <rect x="260" y="168" width="116" height="116" rx="28" fill="rgba(255,255,255,0.06)"/>
-        <path d="M292 250v-38h20v38M320 250v-60h20v60M348 250v-86h20v86" fill="#4fe0ff"/>
-        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Macroeconomics</text>
+        <rect width="520" height="460" rx="26" fill="#10324a"/>
+        <rect x="0" y="0" width="520" height="64" fill="#2f78a0"/>
+        <text x="260" y="43" text-anchor="middle" fill="#ffffff" font-size="30" font-weight="700" font-family="IBM Plex Sans, Arial">Circular Flow of Income</text>
+        <circle cx="260" cy="112" r="50" fill="#63d1cf"/>
+        <text x="260" y="106" text-anchor="middle" fill="#ffffff" font-size="17" font-family="IBM Plex Sans, Arial">Factor</text>
+        <text x="260" y="128" text-anchor="middle" fill="#ffffff" font-size="17" font-family="IBM Plex Sans, Arial">Markets</text>
+        <circle cx="260" cy="342" r="54" fill="#63d1cf"/>
+        <text x="260" y="336" text-anchor="middle" fill="#ffffff" font-size="17" font-family="IBM Plex Sans, Arial">Product</text>
+        <text x="260" y="358" text-anchor="middle" fill="#ffffff" font-size="17" font-family="IBM Plex Sans, Arial">Markets</text>
+        <rect x="60" y="186" width="110" height="62" fill="#63d1cf"/>
+        <rect x="350" y="186" width="110" height="62" fill="#63d1cf"/>
+        <text x="115" y="224" text-anchor="middle" fill="#ffffff" font-size="18" font-family="IBM Plex Sans, Arial">Firms</text>
+        <text x="405" y="224" text-anchor="middle" fill="#ffffff" font-size="18" font-family="IBM Plex Sans, Arial">Households</text>
+        <rect x="190" y="170" width="140" height="22" fill="#e5e7eb"/>
+        <rect x="176" y="250" width="168" height="26" fill="#e5e7eb"/>
+        <text x="260" y="186" text-anchor="middle" fill="#334155" font-size="14" font-family="IBM Plex Sans, Arial">Government</text>
+        <text x="260" y="268" text-anchor="middle" fill="#334155" font-size="14" font-family="IBM Plex Sans, Arial">Financial Institutions</text>
+        <path d="M116 176 C 122 132, 176 118, 210 118" fill="none" stroke="#ffffff" stroke-width="5" marker-end="url(#arrow2)"/>
+        <path d="M310 118 C 364 118, 408 140, 412 180" fill="none" stroke="#ffffff" stroke-width="5" marker-end="url(#arrow2)"/>
+        <path d="M404 252 C 396 292, 344 330, 308 334" fill="none" stroke="#ffffff" stroke-width="5" marker-end="url(#arrow2)"/>
+        <path d="M212 334 C 164 332, 120 302, 112 252" fill="none" stroke="#ffffff" stroke-width="5" marker-end="url(#arrow2)"/>
+        <text x="136" y="146" fill="#dbeafe" font-size="14" font-family="IBM Plex Sans, Arial">Factor Payments</text>
+        <text x="388" y="156" fill="#dbeafe" font-size="14" font-family="IBM Plex Sans, Arial">Income</text>
+        <text x="360" y="316" fill="#dbeafe" font-size="14" font-family="IBM Plex Sans, Arial">Consumption</text>
+        <text x="110" y="306" fill="#dbeafe" font-size="14" font-family="IBM Plex Sans, Arial">Sale Receipts</text>
       </svg>
     `,
     recession: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
-          <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1a2344"/>
-            <stop offset="100%" stop-color="#141b35"/>
-          </linearGradient>
-          <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#4fe0ff"/>
-            <stop offset="100%" stop-color="#ff5ea8"/>
-          </linearGradient>
+          <marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937"/>
+          </marker>
         </defs>
-        <rect width="520" height="460" rx="32" fill="url(#bg3)"/>
-        <circle cx="404" cy="108" r="84" fill="rgba(255,94,168,0.12)"/>
-        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
-        <circle cx="178" cy="228" r="52" fill="url(#g3)"/>
-        <path d="M146 208h64M210 208l-30 30M210 208l-30-30" stroke="#141b35" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-        <rect x="258" y="174" width="118" height="108" rx="28" fill="rgba(255,255,255,0.06)"/>
-        <path d="M290 254h52M290 226h72M290 198h92" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
-        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Recession</text>
+        <rect width="520" height="460" rx="26" fill="#fbfdff"/>
+        <text x="260" y="60" text-anchor="middle" fill="#178b94" font-size="34" font-weight="700" font-family="IBM Plex Sans, Arial">Recession</text>
+        <text x="260" y="90" text-anchor="middle" fill="#64748b" font-size="18" font-family="IBM Plex Sans, Arial">Falling output, weaker spending, higher caution</text>
+        <line x1="94" y1="344" x2="424" y2="344" stroke="#111827" stroke-width="5" marker-end="url(#arrow3)"/>
+        <line x1="110" y1="360" x2="110" y2="134" stroke="#111827" stroke-width="5" marker-end="url(#arrow3)"/>
+        <text x="430" y="368" fill="#111827" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">TIME</text>
+        <text x="56" y="148" fill="#111827" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">OUTPUT</text>
+        <path d="M132 156 C 198 180, 244 214, 310 254 S 374 288, 404 306" fill="none" stroke="#ef4444" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="224" cy="202" r="9" fill="#ef4444"/>
+        <circle cx="302" cy="250" r="9" fill="#ef4444"/>
+        <rect x="274" y="130" width="134" height="60" rx="14" fill="#fff1f2" stroke="#fecdd3"/>
+        <text x="341" y="155" text-anchor="middle" fill="#991b1b" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">Growth slows</text>
+        <text x="341" y="176" text-anchor="middle" fill="#7f1d1d" font-size="14" font-family="IBM Plex Sans, Arial">spending and jobs weaken</text>
       </svg>
     `,
     microeconomics: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
-          <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1a2344"/>
-            <stop offset="100%" stop-color="#141b35"/>
-          </linearGradient>
-          <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#4fe0ff"/>
-            <stop offset="100%" stop-color="#d45bff"/>
-          </linearGradient>
+          <marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#111827"/>
+          </marker>
         </defs>
-        <rect width="520" height="460" rx="32" fill="url(#bg4)"/>
-        <circle cx="126" cy="120" r="82" fill="rgba(79,224,255,0.10)"/>
-        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
-        <rect x="128" y="168" width="86" height="86" rx="24" fill="url(#g4)"/>
-        <path d="M152 198h38M152 220h38" stroke="#141b35" stroke-width="12" stroke-linecap="round"/>
-        <rect x="258" y="160" width="124" height="122" rx="30" fill="rgba(255,255,255,0.06)"/>
-        <circle cx="300" cy="202" r="16" fill="#4fe0ff"/>
-        <circle cx="340" cy="202" r="16" fill="#7a7dff"/>
-        <circle cx="320" cy="238" r="16" fill="#d45bff"/>
-        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Microeconomics</text>
+        <rect width="520" height="460" rx="26" fill="#fbfdff"/>
+        <text x="260" y="62" text-anchor="middle" fill="#178b94" font-size="34" font-weight="700" font-family="IBM Plex Sans, Arial">Demand and Supply</text>
+        <line x1="110" y1="344" x2="418" y2="344" stroke="#111827" stroke-width="5" marker-end="url(#arrow4)"/>
+        <line x1="126" y1="360" x2="126" y2="126" stroke="#111827" stroke-width="5" marker-end="url(#arrow4)"/>
+        <text x="430" y="362" fill="#111827" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">QUANTITY</text>
+        <text x="74" y="118" fill="#111827" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">PRICE</text>
+        <path d="M172 300 L 386 146" stroke="#60a5fa" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M172 156 L 390 302" stroke="#60a5fa" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <line x1="276" y1="226" x2="276" y2="344" stroke="#ef4444" stroke-width="4" stroke-dasharray="8 7"/>
+        <line x1="126" y1="226" x2="276" y2="226" stroke="#ef4444" stroke-width="4" stroke-dasharray="8 7"/>
+        <circle cx="276" cy="226" r="8" fill="#ef4444"/>
+        <text x="352" y="154" fill="#2563eb" font-size="18" font-weight="700" font-family="IBM Plex Sans, Arial">Supply Curve</text>
+        <text x="350" y="314" fill="#2563eb" font-size="18" font-weight="700" font-family="IBM Plex Sans, Arial">Demand Curve</text>
+        <text x="284" y="378" fill="#ef4444" font-size="16" font-weight="700" font-family="IBM Plex Sans, Arial">Equilibrium Quantity</text>
       </svg>
     `,
     "macro-micro": `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 460">
         <defs>
-          <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1a2344"/>
-            <stop offset="100%" stop-color="#141b35"/>
+          <linearGradient id="box5a" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#dbeafe"/>
+            <stop offset="100%" stop-color="#bfdbfe"/>
           </linearGradient>
-          <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#4fe0ff"/>
-            <stop offset="100%" stop-color="#d45bff"/>
+          <linearGradient id="box5b" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ede9fe"/>
+            <stop offset="100%" stop-color="#ddd6fe"/>
           </linearGradient>
         </defs>
-        <rect width="520" height="460" rx="32" fill="url(#bg5)"/>
-        <circle cx="116" cy="120" r="78" fill="rgba(212,91,255,0.10)"/>
-        <rect x="92" y="94" width="336" height="272" rx="34" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
-        <circle cx="174" cy="230" r="50" fill="url(#g5)"/>
-        <path d="M174 198v64M142 230h64" stroke="#141b35" stroke-width="14" stroke-linecap="round"/>
-        <rect x="262" y="182" width="118" height="96" rx="28" fill="rgba(255,255,255,0.06)"/>
-        <path d="M292 212h58M292 238h82" stroke="#eef2ff" stroke-width="12" stroke-linecap="round"/>
-        <text x="112" y="144" fill="#eef2ff" font-size="22" font-family="IBM Plex Sans, Arial">Finance Basics</text>
+        <rect width="520" height="460" rx="26" fill="#fbfdff"/>
+        <text x="260" y="62" text-anchor="middle" fill="#178b94" font-size="32" font-weight="700" font-family="IBM Plex Sans, Arial">Macro vs Micro Economics</text>
+        <rect x="72" y="110" width="160" height="198" rx="24" fill="url(#box5a)" stroke="#93c5fd"/>
+        <rect x="288" y="110" width="160" height="198" rx="24" fill="url(#box5b)" stroke="#c4b5fd"/>
+        <text x="152" y="156" text-anchor="middle" fill="#1e3a8a" font-size="28" font-weight="700" font-family="IBM Plex Sans, Arial">Macro</text>
+        <text x="152" y="194" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">GDP</text>
+        <text x="152" y="220" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">Inflation</text>
+        <text x="152" y="246" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">Interest Rates</text>
+        <text x="152" y="272" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">Unemployment</text>
+        <text x="368" y="156" text-anchor="middle" fill="#5b21b6" font-size="28" font-weight="700" font-family="IBM Plex Sans, Arial">Micro</text>
+        <text x="368" y="194" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">Pricing</text>
+        <text x="368" y="220" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">Firms</text>
+        <text x="368" y="246" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">Consumers</text>
+        <text x="368" y="272" text-anchor="middle" fill="#334155" font-size="18" font-family="IBM Plex Sans, Arial">Supply &amp; Demand</text>
+        <text x="260" y="374" text-anchor="middle" fill="#64748b" font-size="20" font-family="IBM Plex Sans, Arial">Markets combine both perspectives</text>
       </svg>
     `,
   };

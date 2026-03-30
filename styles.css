@@ -450,10 +450,12 @@ h3 {
 .learning-art {
   width: 100%;
   aspect-ratio: 2.15;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   border-radius: 20px;
   border: 1px solid rgba(166, 180, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.96);
+  padding: 10px;
 }
 
 .learning-label {
