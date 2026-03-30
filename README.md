@@ -41,6 +41,6 @@ This MVP is fully static and does not require a build step.
 - [`styles.css`](/Users/shika/Documents/Project/hackonomics/styles.css): visual design and responsive styling
 - [`app.js`](/Users/shika/Documents/Project/hackonomics/app.js): trading logic, scenarios, events, charts, and explanations
 
-## Suggested Pitch
+## Pitch
 
 “Most stock simulators teach clicking buttons. MarketMind teaches cause and effect. Players experience how macro events reshape sectors, then immediately see how those forces impacted their portfolio.”
