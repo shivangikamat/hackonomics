@@ -10,7 +10,7 @@ MarketMind is a browser-based stock market learning game built for Hackonomics. 
 - Explains portfolio gains and losses in plain language based on sector exposure and the latest event.
 - Includes scenario modes such as a recession drill, AI boom, and crash simulation.
 
-## Demo Highlights
+## Highlights
 
 - `Trigger Market Event`: fires a macro event and reprices stocks based on sector sensitivity.
 - `Explain My Portfolio`: generates a quick explanation for the current portfolio result.
